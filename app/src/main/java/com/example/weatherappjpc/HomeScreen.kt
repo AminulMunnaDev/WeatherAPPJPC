@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(viewModel: WeatherViewModel) {
     var city by remember {
         mutableStateOf("")
     }
@@ -47,7 +47,9 @@ fun HomeScreen() {
                 },
                 label = { Text(text = "Enter your City") }
             )
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                viewModel.getData(city)
+            }) {
                 Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
             }
         }
