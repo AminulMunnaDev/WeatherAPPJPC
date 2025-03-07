@@ -13,10 +13,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -26,12 +28,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherappjpc.Api.NetworkResponse
 import com.example.weatherappjpc.DataClass.WeatherModel
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(viewModel: WeatherViewModel) {
     var city by remember {
@@ -57,7 +61,20 @@ fun HomeScreen(viewModel: WeatherViewModel) {
                 onValueChange = {
                     city = it
                 },
-                label = { Text(text = "Enter your City") }
+                label = { Text(text = "Enter your City") },
+                singleLine = true,
+                textStyle = TextStyle(color = Color.Black),  // ✅ Force text color
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,  // Transparent background when focused
+                    unfocusedContainerColor = Color.Transparent, // Transparent when not focused
+                    focusedIndicatorColor = Color.Black,       // ✅ Border color when focused
+                    unfocusedIndicatorColor = Color.Gray,     // ✅ Border color when not focused
+                    focusedLabelColor = Color.Black,          // ✅ Label color when typing (focused)
+                    unfocusedLabelColor = Color.Black,          // ✅ Label color when not typing (unfocused)
+                    cursorColor = Color.Black,                 // ✅ Cursor color
+                    focusedTextColor = Color.Black,           // ✅ Input text color when focused
+                    unfocusedTextColor = Color.DarkGray       // ✅ Input text color when unfocused
+                )
             )
             IconButton(onClick = {
                 viewModel.getData(city)
@@ -111,11 +128,24 @@ fun WeatherDetails(data: WeatherModel) {
             modifier = Modifier.padding(top = 4.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(data.location.name, fontSize = 30.sp)
+            Text(data.location.name, fontSize = 24.sp)
             Spacer(modifier = Modifier.width(8.dp))
-            Text(data.location.country, fontSize = 30.sp)
+            Text(
+                data.location.country, fontSize = 24.sp, style =
+                androidx.compose.ui.text.TextStyle(color = Color.Gray)
+            )
+
         }
+        Spacer(modifier = Modifier.height(12.dp)) // Space between text and temperature()
+        Text(
+            data.current.temp_c.toString() + "°C",
+            fontSize = 70.sp, color = Color.DarkGray
+        )
     }
+    Text(
+        data.current.temp_f.toString() + "°F",
+        fontSize = 30.sp, color = Color.Gray
+    )
 }
 
 
