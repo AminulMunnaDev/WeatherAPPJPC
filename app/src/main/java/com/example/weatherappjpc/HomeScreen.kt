@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherappjpc.Api.NetworkResponse
-import com.example.weatherappjpc.Api.WeatherModel
+import com.example.weatherappjpc.DataClass.WeatherModel
 
 
 @Composable

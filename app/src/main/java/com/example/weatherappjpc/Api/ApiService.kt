@@ -1,7 +1,7 @@
 package com.example.weatherappjpc.Api
 
+import com.example.weatherappjpc.DataClass.WeatherModel
 import retrofit2.Response
-import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 

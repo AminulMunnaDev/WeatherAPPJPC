@@ -1,4 +1,4 @@
-package com.example.weatherappjpc.Api
+package com.example.weatherappjpc.DataClass
 
 data class Condition(
     val code: String,

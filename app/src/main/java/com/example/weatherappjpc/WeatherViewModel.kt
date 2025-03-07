@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.weatherappjpc.Api.ConstApiKey
 import com.example.weatherappjpc.Api.NetworkResponse
 import com.example.weatherappjpc.Api.RetrofitInstance
-import com.example.weatherappjpc.Api.WeatherModel
+import com.example.weatherappjpc.DataClass.WeatherModel
 import kotlinx.coroutines.launch
 
 class WeatherViewModel : ViewModel() {

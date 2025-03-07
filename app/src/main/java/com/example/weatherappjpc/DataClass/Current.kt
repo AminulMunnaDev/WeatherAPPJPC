@@ -1,4 +1,4 @@
-package com.example.weatherappjpc.Api
+package com.example.weatherappjpc.DataClass
 
 data class Current(
     val cloud: Int,
